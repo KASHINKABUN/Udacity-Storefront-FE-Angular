@@ -1,0 +1,15 @@
+<div class="product_content">
+  <img src={{product.product_image}} alt={{product.product_name}} />
+  <h3 (click)="goToProductDetailPage(product.id)">{{ product.product_name }}</h3>
+  <div class="product_content_price"><span>{{product.first_price}}</span><strong>{{product.discount_price}}</strong></div>
+  <div class="product_content_cart">
+    <select [(ngModel)]="product.selected">
+      <option *ngFor="let opt of product_number_selects" 
+          [value]="opt" 
+          [selected]="product.selected == opt">
+              {{opt}}
+      </option>
+    </select>
+    <button (click)="addToCart()">Add to cart</button>
+  </div>
+</div>

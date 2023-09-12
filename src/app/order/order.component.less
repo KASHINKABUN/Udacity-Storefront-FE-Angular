@@ -1,0 +1,45 @@
+.order {
+  padding: 40px 80px;
+  z-index: 0;
+
+  &_list {
+    // display: grid;
+    grid-template-columns: auto auto auto;
+
+    mat-expansion-panel {
+      margin-bottom: 12px;
+      border-radius: 8px !important;
+    }
+
+    mat-expansion-panel-header, mat-expansion-panel-header:hover {
+      background-color: #0987ad !important;
+      color: white;
+      border-radius: 8px 8px 0 0 !important;
+    }
+
+    mat-panel-title, mat-panel-description {
+      color: white;
+    }
+  }
+
+
+  &_product {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 12px;
+
+    img {
+      width: 300px;
+      border: 1px solid #06bbac;
+      padding: 8px;
+    }
+
+    &_content {
+      padding-top: 12px;
+    }
+  }
+}
+
+.mat-expansion-indicator::after {
+  color: white !important;
+}

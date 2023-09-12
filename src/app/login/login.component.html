@@ -1,0 +1,13 @@
+<div class="login">
+  <form class="form-group" autocomplete="off" (ngSubmit)="login()">
+    <div>
+      <label for="username">Username</label>
+      <input name="username" type="text" class="form-control" id="username" required [(ngModel)]="data.username" />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input name="password" type="password" class="form-control" id="password" required [(ngModel)]="data.pass_word" />
+    </div>
+    <button [disabled]="!data.username || !data.pass_word" type="submit">Login</button>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="order" *ngIf="orders.length">
+  <div class="order_list">
+    <mat-expansion-panel expanded="true" *ngFor="let order of orders">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Order has {{ order.products[0].product_name }} ...
+        </mat-panel-title>
+        <mat-panel-description>
+          <span>Total <strong>{{ order.order.total }}$ </strong> By {{order.order.method}}</span> ({{order.order.description}})
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let product of order.products">
+        <div class="order_product">
+          <img src={{product.product_image}} alt={{product.product_name}} />
+          <div class="order_product_content">
+            <h3>{{product.product_name}}</h3>
+            <p>{{product.product_description}}</p>
+            <p>Amount: <strong>{{product.product_number}}</strong></p>
+            <p>Price: <strong>{{product.discount_price}}</strong></p>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
+<app-blank-content *ngIf="!orders.length" />

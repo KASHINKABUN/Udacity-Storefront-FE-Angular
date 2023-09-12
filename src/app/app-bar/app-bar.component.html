@@ -1,0 +1,8 @@
+<div class="toolbar" role="banner">
+  <span (click)="goToListPage()">{{userInfo.fullname}}</span>
+  <span>
+    <span (click)="goToCart()">Your cart 	<mat-icon>shopping_cart</mat-icon></span>
+    <span class="divider">|</span><span (click)="goToOrder()">Your orders</span>
+  </span>
+  <span (click)="logout()">Logout</span>
+</div>

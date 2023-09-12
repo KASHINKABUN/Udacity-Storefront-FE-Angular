@@ -1,0 +1,27 @@
+<div class="product" *ngIf="product.id > -1" >
+  <img src={{product.product_image}} alt={{product.product_name}} />
+  <div class="product_content">
+    <div class="product_detail">
+      <h2>{{product.product_name}}</h2>
+      <p>
+        <span>{{product.first_price}}</span>
+        <strong>{{product.discount_price}}</strong>
+      </p>
+      <p class="mb-5">{{product.product_description}}</p>
+    </div>
+    <select [(ngModel)]="product.selected">
+      <option *ngFor="let opt of product_number_selects" 
+          [value]="opt" 
+          [selected]="product.selected == opt">
+              {{opt}}
+      </option>
+    </select>
+    <div>
+      <button (click)="addToCart(product)">Add to cart</button>
+      <p class="product_content_back" routerLink="/">
+        {{"\<- Back to list page"}}
+      </p>
+    </div>
+  </div>
+</div>
+<app-blank-content *ngIf="!product.id || product.id === -1" />

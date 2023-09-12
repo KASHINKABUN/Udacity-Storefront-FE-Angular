@@ -1,0 +1,11 @@
+<div class="product">
+  <div class="product_list">
+      <app-product
+        *ngFor="let product of products"
+        [product]="product"
+        [selects]="product_number_selects"
+        (callAddToCart)="addToCart($event)"
+        (callGoToProductDetailPage)="goToProductDetailPage($event)"
+      />
+    </div>
+</div>

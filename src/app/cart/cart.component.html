@@ -1,0 +1,92 @@
+<div class="product" *ngIf="products.length">
+  <div class="product_list">
+    <div>
+      <div class="product_content" *ngFor="let product of products">
+        <mat-icon (click)="deleteProductFromCart(product.id)">delete</mat-icon>
+        <img src={{product.product_image}} alt={{product.product_name}} />
+        <div class="product_content_detail">
+          <h4>{{ product.product_name }}</h4>
+          <div class="product_content_price"><span>{{product.first_price}}</span><strong>{{product.discount_price}}</strong></div>
+          <div>
+            <label for="amount">Amount: </label>
+            <input type="number" id="amount" name="amount" min="1" [(ngModel)]="product.product_number" (change)="amountChanged(product)" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <form *ngIf="products.length" #form="ngForm" name="form" id="form" class="form-group" (ngSubmit)="cartSubmit()">
+      <div>
+        <label for="fullname">Full name</label>
+        <input
+          name="fullname"
+          type="text"
+          class="form-control"
+          id="fullname"
+          required
+          autocomplete="off"
+          placeholder="(minimum 3 characters)"
+          minlength="3"
+          [(ngModel)]="checkoutInfo.fullname"
+          #fullname="ngModel" />
+      </div>
+      <div>
+        <label for="address">Address</label>
+        <input
+          name="address"
+          type="text"
+          class="form-control"
+          id="address"
+          required
+          autocomplete="off"
+          minlength="6"
+          placeholder="(minimum 6 characters)"
+          [(ngModel)]="checkoutInfo.address"
+          #address="ngModel" />
+      </div>
+      <div>
+        <label for="credit">Credit card number</label>
+        <input
+          name="credit"
+          type="number"
+          class="form-control"
+          id="credit"
+          required
+          autocomplete="off"
+          placeholder="(16-digit number)"
+          [(ngModel)]="checkoutInfo.cartNumber"
+          (ngModelChange)="onCheckCreditCard(form)"
+          #credit="ngModel" />
+      </div>
+      <div *ngIf="fullname.invalid && fullname.dirty" class="error">
+        <div *ngIf="fullname.errors?.['required']">
+          Full name is required
+        </div>
+        <div *ngIf="fullname.errors?.['minlength']">
+          Full name mush has at least 3 characters
+        </div>
+      </div>
+      <div *ngIf="address.invalid && address.dirty" class="error">
+        <div *ngIf="address.errors?.['required']">
+          Address is required
+        </div>
+        <div *ngIf="address.errors?.['minlength']">
+          Address mush has at least 6 characters
+        </div>
+      </div>
+      <div *ngIf="credit.invalid && credit.dirty" class="error">
+        <div *ngIf="credit.errors?.['required']">
+          Credit card is required
+        </div>
+        <div *ngIf="credit.errors?.['incorrect']">
+          Credit card must have 16 digits
+        </div>
+        <div *ngIf="credit.errors?.['numberOnly']">
+          Credit card must have only digit
+        </div>
+      </div>
+      <button type="submit" [disabled]="fullname.invalid || address.invalid || credit.invalid">Submit</button>
+    </form>
+  </div>
+  <h1 *ngIf="products.length">Total: {{summ}} $</h1>
+</div>
+<app-blank-content *ngIf="!products.length" [message]="blankContent" />
